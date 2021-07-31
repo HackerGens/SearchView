@@ -1,6 +1,7 @@
 package wallet.currency.searchview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,10 +36,11 @@ public class UsersitemsAdapter extends RecyclerView.Adapter<UsersitemsAdapter.Fo
         this.filteredList = usersItemsModals;
     }
 
-    public static class FollowerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public static class FollowerViewHolder extends RecyclerView.ViewHolder{
         public TextView itemname, itemprice,itemdiscount,itemTotal;
         public ImageView item_pic;
         String item_id;
+        CardView cardView;
 
         public FollowerViewHolder(final View view) {
             super(view);
@@ -47,10 +49,7 @@ public class UsersitemsAdapter extends RecyclerView.Adapter<UsersitemsAdapter.Fo
             itemTotal= view.findViewById(R.id.itemTotal);
             itemdiscount = view.findViewById(R.id.item_discount);
             item_pic = view.findViewById(R.id.useritem_pic);
-        }
-
-        @Override
-        public void onClick(View v) {
+            cardView = view.findViewById(R.id.cardView);
 
         }
     }
@@ -71,19 +70,19 @@ public class UsersitemsAdapter extends RecyclerView.Adapter<UsersitemsAdapter.Fo
                 holder.itemTotal.setText(album.getItems_total());
                 holder.itemdiscount.setText(album.getItems_discount());
                 holder.item_id = album.getItems_id();
-
                 Picasso.Builder builder = new Picasso.Builder(context);
                 Picasso picasso = builder.build();
                 picasso.load(album.getItems_pic()).placeholder(R.drawable.ic_launcher_background).fit().centerInside().into(holder.item_pic);
                 holder.itemprice.setPaintFlags(holder.itemprice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+
+                holder.cardView.setOnClickListener(v -> onCardClick(holder.item_id));
             }
         }
     }
 
-    // Handle click by card github user
-    private void onCardClick(int position) {
-        Toast.makeText(context, "Show GitHub " + filteredList.get(position).getItems_name(), Toast.LENGTH_SHORT).show();
-    }
+    private void onCardClick(String item_id) {
+      //  SharedHelper.putKey(context, "item_id", item_id);
+        }
 
     @Override
     public Filter getFilter() {
