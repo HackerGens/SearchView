@@ -21,11 +21,6 @@ import java.util.List;
 
 import wallet.currency.searchview.util.Util;
 
-
-/**
- * @author Ivan V on 29.10.2017.
- * @version 1.0
- */
 public class UsersitemsAdapter extends RecyclerView.Adapter<UsersitemsAdapter.FollowerViewHolder> implements Filterable {
 
     private static final String TAG = UsersitemsAdapter.class.getSimpleName();
@@ -40,7 +35,7 @@ public class UsersitemsAdapter extends RecyclerView.Adapter<UsersitemsAdapter.Fo
         this.filteredList = usersItemsModals;
     }
 
-    public static class FollowerViewHolder extends RecyclerView.ViewHolder {
+    public static class FollowerViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public TextView itemname, itemprice,itemdiscount,itemTotal;
         public ImageView item_pic;
         String item_id;
@@ -52,6 +47,11 @@ public class UsersitemsAdapter extends RecyclerView.Adapter<UsersitemsAdapter.Fo
             itemTotal= view.findViewById(R.id.itemTotal);
             itemdiscount = view.findViewById(R.id.item_discount);
             item_pic = view.findViewById(R.id.useritem_pic);
+        }
+
+        @Override
+        public void onClick(View v) {
+
         }
     }
 
